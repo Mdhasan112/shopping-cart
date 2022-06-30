@@ -39,13 +39,6 @@
 //         document.getElementById('case-total').innerText = '$' + caseTotal;
 //     });
 
-document.getElementById('phone-increase').addEventListener("click", function (){
-    phoneSellingIncrease(true);
-})
-
-document.getElementById('phone-decrease').addEventListener("click", function () {
-    phoneSellingIncrease(false);
-})
 
 function phoneSellingIncrease(isIncrease) {
     const phoneInput = document.getElementById('phone-count');
@@ -62,16 +55,6 @@ function phoneSellingIncrease(isIncrease) {
     document.getElementById('phone-total').innerText = phoneTotal;
 }
 
-
-
-
-document.getElementById('case-increase').addEventListener("click", function (){
-    caseSellingIncrease(true);
-});
-
-    document.getElementById('case-decrease').addEventListener("click", function() {
-        caseSellingIncrease(false);
-    });
 
     function caseSellingIncrease(isIncrease) {
         const caseInput = document.getElementById('case-count');
