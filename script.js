@@ -40,28 +40,9 @@
 //     });
 
 
+                     // type - 2
 
-function handleProductChange(product, isIncrease) {
-    const productInput = document.getElementById(product + '-count');
-    const productCount = parseInt(productInput.value);
-    let productNewCount = productCount;
-    if(isIncrease == true) {
-        productNewCount = productCount + 1;
-    }
-    if(isIncrease == false && productCount > 0) {
-        productNewCount = productCount - 1;
-    }
-    productInput.value = productNewCount;
-    // productTotal = productNewCount * 59;
-    let productTotal = 0;
-    if(product == 'phone') {
-        productTotal = productNewCount * 1219;
-    }
-    if(product == 'case') {
-        productTotal = productNewCount * 59;
-    }
-    document.getElementById(product +'-total').innerText = '$' + productTotal;
-}
+
 // function handlePhoneChange(isIncrease) {
 //     const phoneInput = document.getElementById('phone-count');
 //     const phoneCount = parseInt(phoneInput.value);
@@ -92,3 +73,44 @@ function handleProductChange(product, isIncrease) {
 //         caseTotal = caseNewCount * 59;
 //         document.getElementById('case-total').innerText = '$' + caseTotal;
 //     }
+
+function handleProductChange(product, isIncrease) {
+    const productInput = document.getElementById(product + '-count');
+    const productCount = parseInt(productInput.value);
+    let productNewCount = productCount;
+    if(isIncrease == true) {
+        productNewCount = productCount + 1;
+    }
+    if(isIncrease == false && productCount > 0) {
+        productNewCount = productCount - 1;
+    }
+    productInput.value = productNewCount;
+    let productTotal = 0;
+    if(product == 'phone') {
+        productTotal = productNewCount * 1219;
+    }
+    if(product == 'case') {
+        productTotal = productNewCount * 59;
+    }
+    document.getElementById(product +'-total').innerText = '$' + productTotal;
+    calculateTotal();
+}
+
+function calculateTotal() {
+    const phoneCount = getProductValue("phone");
+    const caseCount = getProductValue("case");
+   
+    const totalPrice = phoneCount * 1219 + caseCount * 59;
+    document.getElementById('total-price').innerText = '$' + totalPrice;
+
+    const tax = Math.round(totalPrice * 0.1);
+    document.getElementById('total-tax').innerText = '$' + tax;
+    const grandTotal = totalPrice + tax;
+    document.getElementById('grand-total').innerText = '$' + grandTotal;
+}
+
+function getProductValue(product) {
+    const productInput = document.getElementById(product +'-count');
+    const productCount = parseInt(productInput.value);
+    return productCount;
+}
